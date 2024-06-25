@@ -32,9 +32,9 @@ public class UserService {
         return userDAO.save(u);
     }
 
-    //public void loginUser(User u) {
+    public void loginUser(User u) {
 
-    //}
+    }
 
     public void deleteUser(int id) {
         // Check user role
