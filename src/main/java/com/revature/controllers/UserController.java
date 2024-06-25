@@ -3,6 +3,7 @@ package com.revature.controllers;
 import com.revature.models.User;
 import com.revature.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,8 +26,11 @@ public class UserController {
 
     // Get User
     @GetMapping("/id")
-    public User getUser(long id) {
-        return userService.getUser(id);
+    public ResponseEntity<User> getUser(int id) {
+        if (userService.getUser(id).isPresent()) {
+            return ResponseEntity.ok(userService.getUser(id).get());
+        }
+        return ResponseEntity.status(404).build();
     }
 
     // Register
@@ -43,13 +47,13 @@ public class UserController {
 
     // Delete
     @DeleteMapping("/delete/{id}")
-    public void deleteUser(long id) {
+    public void deleteUser(int id) {
         userService.deleteUser(id);
     }
 
     // Edit
     @PutMapping("/update/{id}")
-    public boolean updateUser(@RequestBody User u, long id) {
+    public boolean updateUser(@RequestBody User u, int id) {
         return userService.updateUser(id, u);
     }
 

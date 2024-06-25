@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.revature</groupId>
-	<artifactId>backend</artifactId>
+	<artifactId>whatamidoing</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>whatamidoing</name>
 	<description>we have 3 hours to do this</description>

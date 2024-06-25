@@ -2,6 +2,7 @@ package com.revature.services;
 
 import com.revature.daos.UserDAO;
 import com.revature.models.User;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,7 @@ public class UserService {
         return userDAO.findAll();
     }
 
-    public User getUser(long id) {
+    public Optional<User> getUser(int id) {
         return userDAO.findById(id);
     }
 
@@ -32,7 +33,7 @@ public class UserService {
 
     }
 
-    public void deleteUser(long id) {
+    public void deleteUser(int id) {
         // Check user role
         // TODO : Role check
 
@@ -42,7 +43,7 @@ public class UserService {
     // Update self -- Self *should* exist though
     public boolean updateUser(User u) {
         // **Should** exist
-        Optional<User> optUser = Optional.ofNullable(userDAO.findById(u.getUserId()));
+        Optional<User> optUser = userDAO.findById(u.getUserId());
 
         if (optUser.isEmpty()) {
             return false;
@@ -68,12 +69,12 @@ public class UserService {
         return true;
     }
 
-    public boolean updateUser(long id, User u) {
+    public boolean updateUser(int id, User u) {
         // Check user role
         // TODO : Role check
 
         // Item exists?
-        Optional<User> optUser = Optional.ofNullable(userDAO.findById(id));
+        Optional<User> optUser = userDAO.findById(id);
 
         if (optUser.isEmpty()) {
             return false;
