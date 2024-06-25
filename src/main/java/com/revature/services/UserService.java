@@ -2,7 +2,6 @@ package com.revature.services;
 
 import com.revature.daos.UserDAO;
 import com.revature.models.User;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,8 +10,12 @@ import java.util.Optional;
 
 @Service
 public class UserService {
+    private final UserDAO userDAO;
+
     @Autowired
-    private UserDAO userDAO;
+    public UserService(UserDAO userDAO) {
+        this.userDAO = userDAO;
+    }
 
     public List<User> getAllUsers() {
         // Check user role
@@ -29,9 +32,9 @@ public class UserService {
         return userDAO.save(u);
     }
 
-    public void loginUser(User u) {
+    //public void loginUser(User u) {
 
-    }
+    //}
 
     public void deleteUser(int id) {
         // Check user role
